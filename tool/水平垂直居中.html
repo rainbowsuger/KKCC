@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <title>水平垂直居中</title>
+    <style>
+      /* 方法一 flex布局 */
+      .block-body1 {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+      }
+      .block-box1 {
+        width: 400px;
+        height: 200px;
+        line-height:200px;
+        background: #f00;
+        text-align: center;
+      }
+      /* 方法二 定位 */
+      .block-body1 {
+        position: relative;
+      }
+      .block-box2 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -100px;
+        margin-left: -200px;
+        width: 400px;
+        height: 200px;
+        line-height:200px;
+        background: rgb(20, 231, 83);
+        text-align: center;
+      }
+      /* 方法2-1 定位不可知元素宽高用transform:translate(-50%, -50%) */
+      .block-box3 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: rgb(187, 211, 49);
+        text-align: center;
+      }
+      .block-body4 {
+        display: table-cell;
+        width: 400px;
+        height: 200px;
+        vertical-align: middle;
+        text-align: center;
+        background: rgb(125, 148, 226);
+      }
+      .block-box4 {
+        display: inline-block;
+        background: rgb(197, 49, 211);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="block-body1">
+      <div class="block-box1">方法1：flex布局,文本水平垂直居中</div>
+    </div>
+    <!-- <div class="block-body2"> -->
+      <!-- <div class="block-box2">方法2：定位，可知子元素宽高用maigin</div> -->
+    <!-- </div> -->
+    <!-- <div class="block-body2"> -->
+      <!-- <div class="block-box3">方法3：定位，不可知子元素宽高用transform: translate(-50%, -50%);</div> -->
+    <!-- </div> -->
+    <!-- <div class="block-body4"> -->
+      <!-- <div class="block-box4">方法4：父元素display：table-cell;vertical-align: middle;,父元素必须有宽高，子元素是inline-block</div> -->
+    <!-- </div> -->
+  </body>
+</html>

@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <title>算法-排序（冒泡、选择、插入、快速）</title>
+  </head>
+  <body>
+    <p>[3,4,6,1,2,5]</p>
+    <button onclick="bubbleSort(arr, 6)">冒泡排序</button><br/>
+    <button onclick="selectionSort(arr, 6)">选择排序</button><br/>
+    <button onclick="insertionSort(arr, 6)">插入排序</button><br/>
+    <button onclick="quickSort(arr, 0, 5)">快速排序</button><br/>
+    <script type="text/javascript">
+      var arr = [3,4,6,1,2,5];
+      var result;
+      // 冒泡排序：相邻的比较大小转换顺序；
+      function bubble(arr, n) {
+        if (n < 2) {
+            return arr;
+        } else {
+           for (var i = 1; i < n; i++) {
+            if(arr[i]<arr[i-1]) {
+              var temp = arr[i-1];
+              arr[i-1] = arr[i];
+              arr[i] = temp;
+            }
+           } 
+           return arr;
+        }
+      }
+      function bubbleSort(arr, n) {
+        var s = new Date().getTime();
+        var res;
+        for(var i = n; i > 1; i-- ) {
+          res = bubble(arr, i)
+        }
+        console.log('冒泡排序结果：', res);
+        console.log('耗时：', new Date().getTime() - s);
+      }
+      // 选择排序: 选择最大的或者最小的网最后或者最后排；
+      function selection(arr, n) {
+        var max = arr[0];
+        var idx = 0;
+        if (n < 2) {
+            return arr;
+        } else {
+          for (var i=1; i<n; i++) {
+            if (max<arr[i]) {
+              max = arr[i];
+              idx = i;
+            }
+          }
+          arr[idx] = arr[n-1];
+          arr[n-1] = max;
+          return arr;
+        }
+      }
+      function selectionSort(arr, n) {
+        var s = new Date().getTime();
+        var res;
+        for(var i = n; i > 1; i-- ) {
+          res = selection(arr, i)
+        }
+        console.log('选择排序结果：', res);
+        console.log('耗时：', new Date().getTime() - s);
+      }
+      // 插入排序：选中某个值 插入到已经排好序的列表中,默认从第二个开始排序；
+      function insertion(arr, n) {
+        var key = arr[n];
+        var pos = n;
+        for(var i = n; i>0;i--) {
+          if(arr[i-1] > key) {
+            arr[i] = arr[i-1];
+            pos--
+          }
+        }
+        arr[pos] = key;
+        return arr;
+        // while (arr[i-1] > key) {
+        //   arr[i] = arr[i-1];
+        //   i--;
+        //   if(i==0) break;
+        // }
+        // arr[i] = key;
+      }
+      function insertionSort(arr, n) {
+        var s = new Date().getTime();
+        var res;
+        for (var i = 1; i < n; i++) {
+          res = insertion(arr, i);
+        }
+        console.log('插入排序结果：', res);
+        console.log('耗时：', new Date().getTime() - s);
+      }
+      
+      // 快速排序，选定基准值，左右家菩提查找，右边的比基准值小放左边，左边的比基准值大放右边，然后再拍左边的数据和右边的数据。
+      function getPivot(arr, l, r) {
+        var pivot = arr[l];
+        while (l<r) {
+          // 右边的大于基准值，指针--，不然的话就放到左边数据。
+          while(arr[r] >= pivot && l < r) r--;
+            arr[l] = arr[r];
+          // 左边的小于基准值，指针++，不然的话就放到右边数据。
+          while(arr[l] <= pivot && l < r) l++
+            arr[r] = arr[l];
+        }
+        arr[l] = pivot;
+        console.log(arr);
+        return l;
+      }
+      function quickSort(arr, l, r) {
+        if(l<r) {
+          var middle = getPivot(arr, l, r);
+          quickSort(arr, l, middle-1);
+          quickSort(arr, middle+1, r);
+        }
+      }
+
+    </script>
+  </body>
+</html>
